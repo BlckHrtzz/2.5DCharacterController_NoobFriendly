@@ -21,22 +21,20 @@ public class CameraSmoothFollow : MonoBehaviour
 
     #region Unity Functions
 
-    void Start()
-    {
-
-    }
-
     void LateUpdate()
     {
-        cameraTargetVelocity = target.transform.position + offset;
-        if (smoothFollowAllowed)
+        if (target != null)
         {
-            transform.position = Vector3.Lerp(transform.position, cameraTargetVelocity, smoothTime);
+            cameraTargetVelocity = target.transform.position + offset;
+            if (smoothFollowAllowed)
+            {
+                transform.position = Vector3.Lerp(transform.position, cameraTargetVelocity, smoothTime);
+            }
+            else
+                transform.position = cameraTargetVelocity;
         }
-        else
-            transform.position = cameraTargetVelocity;
-
     }
+    
 
     #endregion
 
